@@ -28,17 +28,14 @@ const LayoutIndex = props => {
             </div>
           </a>
           <nav id="swup" className="site-head-left">
-            <ul className="nav" role="menu">
-              {/* <li className="nav-home nav-current" role="menuitem">
-                <Link to={`/`}>Home</Link>
-              </li> */}
-              <li className="nav-about" role="menuitem">
+            <ul className="nav">
+              <li className="nav-about">
                 <Link to={`/about`}>About</Link>
               </li>
-              <li className="nav-elements" role="menuitem">
+              <li className="nav-elements">
                 <Link to={`/photography`}>Photography</Link>
               </li>
-              <li className="nav-tags" role="menuitem">
+              <li className="nav-tags">
                 <Link to={`/installation`}>Installation</Link>
               </li>
             </ul>

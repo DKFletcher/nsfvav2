@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql, StaticQuery } from "gatsby";
-import { withPrefix } from "gatsby";
+// import { withPrefix } from "gatsby";
 
 import LayoutIndex from "../components/layoutIndex";
 import SEO from "../components/seo";

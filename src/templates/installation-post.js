@@ -1,6 +1,5 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
-import Img from "gatsby-image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faHandPointLeft } from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
