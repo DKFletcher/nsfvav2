@@ -1,12 +1,11 @@
 const urljoin = require("url-join");
 const siteConfig = require("./siteConfig");
-console.log("spaceID: ", process.env.CONTENTFUL_SPACE_ID);
-console.log(process.env.CONTENTFUL_ACCESS_TOKEN, "accessToken");
 
 module.exports = {
   siteMetadata: {
     title: siteConfig.name,
     author: siteConfig.author,
+    profession: siteConfig.profession,
     description: siteConfig.description,
     siteUrl: urljoin(siteConfig.url, siteConfig.prefix),
     social: {
@@ -26,6 +25,13 @@ module.exports = {
       options: {
         path: `${__dirname}/content/assets`,
         name: `assets`
+      }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/installation`,
+        name: `installation`
       }
     },
     {
@@ -51,6 +57,38 @@ module.exports = {
           `gatsby-remark-prismjs`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`
+        ]
+      }
+    },
+    {
+      resolve: `gatsby-remark-videos`,
+      options: {
+        pipelines: [
+          {
+            name: "vp9",
+            transcode: chain =>
+              chain
+                .videoCodec("libvpx-vp9")
+                .noAudio()
+                .outputOptions(["-crf 20", "-b:v 0"]),
+            maxHeight: 480,
+            maxWidth: 900,
+            fileExtension: "webm"
+          },
+          {
+            name: "h264",
+            transcode: chain =>
+              chain
+                .videoCodec("libx264")
+                .noAudio()
+                .addOption("-profile:v", "main")
+                .addOption("-pix_fmt", "yuv420p")
+                .outputOptions(["-movflags faststart"])
+                .videoBitrate("1000k"),
+            maxHeight: 480,
+            maxWidth: 900,
+            fileExtension: "mp4"
+          }
         ]
       }
     },
