@@ -12,6 +12,13 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(
     `
       {
+        allContentfulBlogPost {
+          edges {
+            node {
+              slug
+            }
+          }
+        }
         allMarkdownRemark(
           sort: { fields: [frontmatter___date], order: DESC }
           limit: 1000
