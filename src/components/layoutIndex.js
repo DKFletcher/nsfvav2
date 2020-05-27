@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 import IndexFooter from "../components/indexFooter";
 
 const LayoutIndex = props => {
-  const { title, children, path } = props;
+  const { title, children } = props;
   const [toggleNav, setToggleNav] = React.useState(false);
   return (
     <div className={`site-wrapper ${toggleNav ? `site-head-open` : ``}`}>

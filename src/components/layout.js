@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 import Footer from "../components/Footer";
 
 const Layout = props => {
-  const { title, children, path } = props;
+  const { title, children } = props;
   const [toggleNav, setToggleNav] = React.useState(false);
   return (
     <div className={`site-wrapper ${toggleNav ? `site-head-open` : ``}`}>

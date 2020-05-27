@@ -9,12 +9,11 @@ import BackgroundImage from "gatsby-background-image";
 import "../style/normalize.css";
 import "../style/all.scss";
 import indexStyle from "../components/index.module.css";
-import background from "../../content/assets/index-background.jpg";
 const BlogIndex = ({ data }, location) => {
   const siteTitle = data.site.siteMetadata.title;
   return (
     <BackgroundImage fluid={data.indexImage.childImageSharp.fluid}>
-      <LayoutIndex title={siteTitle} path={location}>
+      <LayoutIndex title={siteTitle}>
         <SEO
           title="home"
           keywords={[`devlog`, `blog`, `gatsby`, `javascript`, `react`]}
