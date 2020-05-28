@@ -2,11 +2,19 @@ import React from "react";
 import Layout from "../components/layout";
 import { graphql, useStaticQuery, Link } from "gatsby";
 
+import SEO from "../components/seo";
 import blogStyles from "../tmp/blog.module.scss";
+
+// import Bio from "../components/bio"
+import PostCard from "../components/postCard";
+
+import "../style/normalize.css";
+import "../style/all.scss";
 
 import Head from "../tmp/head";
 
 const BlogPage = () => {
+  let postCounter = 0;
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -16,13 +24,17 @@ const BlogPage = () => {
           profession
         }
       }
-      allContentfulBlogPost(sort: { fields: publishedDate, order: DESC }) {
+      allContentfulPhotographyPost(sort: { fields: date, order: DESC }) {
         edges {
           node {
             title
             slug
-            # publishedDate(fromNow:true)
-            publishedDate(formatString: "MMMM Do, YYYY")
+            date(formatString: "MMMM Do, YYYY")
+            thumbnail {
+              file {
+                url
+              }
+            }
           }
         }
       }
@@ -30,9 +42,28 @@ const BlogPage = () => {
   `);
 
   return (
-    <Layout title={siteTitle}>
+    <Layout title={data.site.siteMetadata.title}>
+      <SEO
+        title="Photography"
+        keywords={[`devlog`, `blog`, `gatsby`, `javascript`, `react`]}
+      />
       {/* <Head title='Blog'/> */}
-      <h2>My Blog</h2>
+      <h2>Photography</h2>
+
+      <div className="post-feed">
+        {data.allContentfulBlogPost.edges.map(edge => {
+          postCounter++;
+          return (
+            <PostCard
+              key={edge.node.fields.slug}
+              count={postCounter}
+              node={edge.node}
+              postClass={`post`}
+            />
+          );
+        })}
+      </div>
+
       <ol className={blogStyles.posts}>
         {data.allContentfulBlogPost.edges.map(edge => {
           return (
