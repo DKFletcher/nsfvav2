@@ -25,9 +25,10 @@ const BlogPage = () => {
             title
             slug
             date(formatString: "MMMM Do, YYYY")
+            thumbnailText
             thumbnail {
-              file {
-                url
+              resolutions {
+                src
               }
             }
           }
@@ -46,6 +47,7 @@ const BlogPage = () => {
 
       <div className="post-feed">
         {data.allContentfulPhotographyPost.edges.map(node => {
+          console.log("node: ", node);
           postCounter++;
           return (
             <PostCard
