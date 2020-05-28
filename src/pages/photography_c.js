@@ -27,8 +27,8 @@ const BlogPage = () => {
             date(formatString: "MMMM Do, YYYY")
             thumbnailText
             thumbnail {
-              resolutions {
-                src
+              fluid(maxWidth: 1350) {
+                ...GatsbyContentfulFluid_withWebp
               }
             }
           }

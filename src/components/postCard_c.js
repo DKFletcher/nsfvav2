@@ -6,15 +6,15 @@ export default props => (
   <article
     className={`post-card ${props.count % 3 === 0 && `post-card-large`} ${
       props.postClass
-    } ${props.node.node.thumbnail.resolutions.src ? `with-image` : `no-image`}`}
+    } ${props.node.node.thumbnail.fluid.src ? `with-image` : `no-image`}`}
     style={
-      props.node.node.thumbnail.resolutions.src && {
-        backgroundImage: `url(${props.node.node.thumbnail.resolutions.src})`
+      props.node.node.thumbnail.fluid.src && {
+        backgroundImage: `url(${props.node.node.thumbnail.fluid.src})`
       }
     }
   >
-    {console.log("props: ", props.node.node.thumbnail.resolutions.src)}
-    {props.node.node.thumbnail.resolutions.src ? (
+    {console.log("props: ", props.node.node.thumbnail.fluid.src)}
+    {props.node.node.thumbnail.fluid.src ? (
       <ContentWithImage props={props} />
     ) : (
       <ContentNoImage props={props} />
