@@ -1,7 +1,6 @@
 import React from "react";
 import Layout from "../components/layout";
 import { graphql, useStaticQuery, Link } from "gatsby";
-
 import SEO from "../components/seo";
 import blogStyles from "../tmp/blog.module.scss";
 
@@ -47,7 +46,6 @@ const BlogPage = () => {
         title="Photography"
         keywords={[`devlog`, `blog`, `gatsby`, `javascript`, `react`]}
       />
-      {/* <Head title='Blog'/> */}
       <h2>Photography</h2>
 
       <div className="post-feed">
