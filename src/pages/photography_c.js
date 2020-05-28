@@ -2,15 +2,11 @@ import React from "react";
 import Layout from "../components/layout";
 import { graphql, useStaticQuery, Link } from "gatsby";
 import SEO from "../components/seo";
-import blogStyles from "../tmp/blog.module.scss";
-
 // import Bio from "../components/bio"
 import PostCard from "../components/postCard_c";
 
 import "../style/normalize.css";
 import "../style/all.scss";
-
-import Head from "../tmp/head";
 
 const BlogPage = () => {
   let postCounter = 0;
