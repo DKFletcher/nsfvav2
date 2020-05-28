@@ -6,7 +6,7 @@ import SEO from "../components/seo";
 import blogStyles from "../tmp/blog.module.scss";
 
 // import Bio from "../components/bio"
-import PostCard from "../components/postCard";
+import PostCard from "../components/postCard_c";
 
 import "../style/normalize.css";
 import "../style/all.scss";
@@ -51,20 +51,20 @@ const BlogPage = () => {
       <h2>Photography</h2>
 
       <div className="post-feed">
-        {data.allContentfulBlogPost.edges.map(edge => {
+        {data.allContentfulPhotographyPost.edges.map(node => {
           postCounter++;
           return (
             <PostCard
-              key={edge.node.fields.slug}
+              key={node.slug}
               count={postCounter}
-              node={edge.node}
+              node={node}
               postClass={`post`}
             />
           );
         })}
       </div>
 
-      <ol className={blogStyles.posts}>
+      {/* <ol className={blogStyles.posts}>
         {data.allContentfulBlogPost.edges.map(edge => {
           return (
             <li className={blogStyles.post}>
@@ -75,7 +75,7 @@ const BlogPage = () => {
             </li>
           );
         })}
-      </ol>
+      </ol> */}
     </Layout>
   );
 };

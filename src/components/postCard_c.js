@@ -27,27 +27,22 @@ class ContentNoImage extends Component {
     return (
       <div className="post-card-content">
         <div>
-          <Tags tags={props.node.frontmatter.tags} />
-        </div>
-        <div>
-          <Link to={props.node.fields.slug} className="post-card-link">
+          <Link to={props.node.slug} className="post-card-link">
             <h2 className="post-card-title">
-              {props.node.frontmatter.title || props.node.fields.slug}
+              {props.node.title || props.node.slug}
             </h2>
           </Link>
         </div>
-        <div className="post-card-date">{props.node.frontmatter.date}</div>
+        <div className="post-card-date">{props.node.date}</div>
         <div className="post-card-body">
-          {props.node.frontmatter.description || props.node.excerpt}
+          {props.node.description || props.node.excerpt}
         </div>
         <div>
           <Link
-            to={props.node.fields.slug}
+            to={props.node.slug}
             className="post-card-link post-card-readmore"
           >
-            {props.node.frontmatter.description || props.node.excerpt
-              ? "Read more"
-              : null}
+            {props.node.description || props.node.excerpt ? "Read more" : null}
           </Link>
         </div>
       </div>
@@ -62,7 +57,7 @@ class ContentWithImage extends Component {
       <Link to={props.node.fields.slug} className="post-card-link">
         <div className="post-card-content">
           <h2 className="post-card-title">
-            {props.node.frontmatter.title || props.node.fields.slug}
+            {props.node.title || props.node.slug}
           </h2>
         </div>
       </Link>
