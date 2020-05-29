@@ -7,9 +7,9 @@ import Head from "../components/head";
 
 export const query = graphql`
   query($slug: String!) {
-    contentfulBlogPost(slug: { eq: $slug }) {
+    contentfulPhotographyPost(slug: { eq: $slug }) {
       title
-      publishedDate(formatString: "MMMM Do, YYYY")
+      date(formatString: "MMMM Do, YYYY")
       body {
         json
       }
@@ -18,24 +18,26 @@ export const query = graphql`
 `;
 
 const Blog = props => {
-  const options = {
-    renderNode: {
-      "embedded-asset-block": node => {
-        const alt = node.data.target.fields.title["en-US"];
-        const url = node.data.target.fields.file["en-US"].url;
-        return <img alt={alt} src={url} />;
-      }
-    }
-  };
+  // const options = {
+  //   renderNode: {
+  //     "embedded-asset-block": node => {
+  //       console.log('blog props: ',node)
+  //       const alt = node.data.target.fields.title["en-US"];
+  //       const url = node.data.target.fields.file["en-US"].url;
+  //       return <img alt={alt} src={url} />;
+  //     }
+  //   }
+  // };
   return (
     <Layout>
-      <Head title={props.data.contentfulBlogPost.title} />
-      <h1>{props.data.contentfulBlogPost.title}</h1>
-      <p>{props.data.contentfulBlogPost.publishedDate}</p>
-      {documentToReactComponents(
-        props.data.contentfulBlogPost.body.json,
-        options
+      <Head title={props.data.contentfulPhotographyPost.title} />
+      <h1>{props.data.contentfulPhotographyPost.title}</h1>
+      <p>{props.data.contentfulPhotographyPost.date}</p>
+      {console.log(
+        "options for contentful rtf component: ",
+        props.data.contentfulPhotographyPost.body.json
       )}
+      {/* { documentToReactComponents(props.data.contentfulPhotographyPost.body.json,options) } */}
     </Layout>
   );
 };

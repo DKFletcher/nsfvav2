@@ -8,11 +8,14 @@ exports.createPages = ({ graphql, actions }) => {
   const blogPost = path.resolve(`./src/templates/blog-post.js`);
   const installationPost = path.resolve(`./src/templates/installation-post.js`);
   const tagPage = path.resolve(`./src/templates/tag-page.js`);
+  const photographyTemplate = path.resolve(
+    `./src/templates/photographyTemplate.js`
+  );
 
   return graphql(
     `
       {
-        allContentfulBlogPost {
+        allContentfulPhotographyPost {
           edges {
             node {
               slug
@@ -43,8 +46,17 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors;
     }
     const posts = result.data.allMarkdownRemark.edges;
+    const contentful_posts = result.data.allContentfulPhotographyPost.edges;
     const tagSet = new Set();
-
+    contentful_posts.forEach((cPosts, cIndex) => {
+      createPage({
+        component: photographyTemplate,
+        path: `/${cPosts.node.slug}`,
+        context: {
+          slug: cPosts.node.slug
+        }
+      });
+    });
     posts.forEach((post, index) => {
       const previous =
         index === posts.length - 1 ? null : posts[index + 1].node;
