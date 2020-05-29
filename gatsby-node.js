@@ -57,43 +57,43 @@ exports.createPages = ({ graphql, actions }) => {
         }
       });
     });
-    posts.forEach((post, index) => {
-      const previous =
-        index === posts.length - 1 ? null : posts[index + 1].node;
-      const next = index === 0 ? null : posts[index - 1].node;
+    //   posts.forEach((post, index) => {
+    //     const previous =
+    //       index === posts.length - 1 ? null : posts[index + 1].node;
+    //     const next = index === 0 ? null : posts[index - 1].node;
 
-      // Get tags for tags pages.
-      if (post.node.frontmatter.tags) {
-        post.node.frontmatter.tags.forEach(tag => {
-          tagSet.add(tag);
-        });
-      }
-      var pageFormat;
-      post.node.frontmatter.makePage === 1
-        ? (pageFormat = blogPost)
-        : (pageFormat = installationPost);
-      createPage({
-        path: post.node.fields.slug,
-        component: pageFormat,
-        context: {
-          slug: post.node.fields.slug,
-          previous,
-          next
-        }
-      });
-    });
+    //     // Get tags for tags pages.
+    //     if (post.node.frontmatter.tags) {
+    //       post.node.frontmatter.tags.forEach(tag => {
+    //         tagSet.add(tag);
+    //       });
+    //     }
+    //     var pageFormat;
+    //     post.node.frontmatter.makePage === 1
+    //       ? (pageFormat = blogPost)
+    //       : (pageFormat = installationPost);
+    //     createPage({
+    //       path: post.node.fields.slug,
+    //       component: pageFormat,
+    //       context: {
+    //         slug: post.node.fields.slug,
+    //         previous,
+    //         next
+    //       }
+    //     });
+    //   });
 
-    // Create tags pages.
-    tagSet.forEach(tag => {
-      createPage({
-        path: `/tags/${_.kebabCase(tag)}/`,
-        component: tagPage,
-        context: {
-          tag
-        }
-      });
-    });
-    return null;
+    //   // Create tags pages.
+    //   tagSet.forEach(tag => {
+    //     createPage({
+    //       path: `/tags/${_.kebabCase(tag)}/`,
+    //       component: tagPage,
+    //       context: {
+    //         tag
+    //       }
+    //     });
+    //   });
+    //   return null;
   });
 };
 

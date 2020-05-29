@@ -14,22 +14,29 @@ export const query = graphql`
         json
       }
     }
+    site {
+      siteMetadata {
+        title
+        description
+        profession
+      }
+    }
   }
 `;
 
 const Blog = props => {
-  // const options = {
-  //   renderNode: {
-  //     "embedded-asset-block": node => {
-  //       console.log('blog props: ',node)
-  //       const alt = node.data.target.fields.title["en-US"];
-  //       const url = node.data.target.fields.file["en-US"].url;
-  //       return <img alt={alt} src={url} />;
-  //     }
-  //   }
-  // };
+  const options = {
+    renderNode: {
+      "embedded-asset-block": node => {
+        console.log("blog props: ", node);
+        const alt = node.data.target.fields.title["en-US"];
+        const url = node.data.target.fields.file["en-US"].url;
+        return <img alt={alt} src={url} />;
+      }
+    }
+  };
   return (
-    <Layout>
+    <Layout title={props.data.site.siteMetadata.title}>
       <Head title={props.data.contentfulPhotographyPost.title} />
       <h1>{props.data.contentfulPhotographyPost.title}</h1>
       <p>{props.data.contentfulPhotographyPost.date}</p>
@@ -37,7 +44,10 @@ const Blog = props => {
         "options for contentful rtf component: ",
         props.data.contentfulPhotographyPost.body.json
       )}
-      {/* { documentToReactComponents(props.data.contentfulPhotographyPost.body.json,options) } */}
+      {documentToReactComponents(
+        props.data.contentfulPhotographyPost.body.json,
+        options
+      )}
     </Layout>
   );
 };

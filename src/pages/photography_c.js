@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/layout";
-import { graphql, useStaticQuery, Link } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 import SEO from "../components/seo";
 // import Bio from "../components/bio"
 import PostCard from "../components/postCard_c";
@@ -39,6 +39,7 @@ const BlogPage = () => {
 
   return (
     <Layout title={data.site.siteMetadata.title}>
+      {console.log(data.site.siteMetadata.title)}
       <SEO
         title="Photography"
         keywords={[`devlog`, `blog`, `gatsby`, `javascript`, `react`]}
@@ -47,11 +48,10 @@ const BlogPage = () => {
 
       <div className="post-feed">
         {data.allContentfulPhotographyPost.edges.map(node => {
-          console.log("node: ", node);
           postCounter++;
           return (
             <PostCard
-              key={node.slug}
+              key={node.node.slug}
               count={postCounter}
               node={node}
               postClass={`post`}
